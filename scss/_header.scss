@@ -1,0 +1,108 @@
+@use "abstracts.scss" as *;
+@use "utils.scss" as *;
+
+.hero {
+  min-height: 60vh;
+  background: url("../images/mobile/image-header.jpg") bottom / cover no-repeat $dark-blue;
+  color: $white;
+
+  @include breakpoint(medium) {
+    background-image: url("../images/desktop/image-header.jpg");
+  }
+
+  @include breakpoint(large) {
+    min-height: 75vh;
+  }
+
+  @include breakpoint(xlarge) {
+    min-height: 85vh;
+  }
+
+  nav {
+    @extend %container;
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+
+    @include breakpoint(large) {
+      padding: 32px 0;
+    }
+
+    .logo {
+      @include breakpoint(large) {
+        width: 144px;
+      }
+    }
+
+    .toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+
+      @include breakpoint(medium) {
+        display: none;
+      }
+
+      &.active .line:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+        width: 30px;
+      }
+
+      &.active .line:nth-child(2) {
+        opacity: 0;
+      }
+
+      &.active .line:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+        width: 30px;
+      }
+    }
+
+    .line {
+      background: $white;
+      width: 26px;
+      height: 3px;
+      transition: all 300ms ease-in-out;
+    }
+
+    .menu {
+      display: none;
+
+      @include breakpoint(medium) {
+        display: flex;
+        gap: 48px;
+      }
+    }
+
+    a {
+      color: $white;
+    }
+
+    .button {
+      padding: 16px 32px;
+      background: $white;
+      color: $very-dark-desaturated-blue;
+      font-family: "Fraunces", sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      text-transform: uppercase;
+      border-radius: 30px;
+    }
+  }
+
+  &-text {
+    padding: 64px 0 128px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: rem(40);
+  }
+}

@@ -1,0 +1,75 @@
+@charset 'utf-8';
+
+@use "abstracts.scss" as *;
+@use "header.scss";
+@use "content.scss";
+@use "testimonials.scss";
+@use "footer.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=Fraunces:wght@700;900&display=swap");
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-size: rem(18);
+  text-align: center;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Barlow", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Fraunces", sans-serif;
+  font-weight: 900;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.img-mobile {
+  @include breakpoint(medium) {
+    display: none;
+  }
+}
+
+.img-desktop {
+  display: none;
+
+  @include breakpoint(medium) {
+    display: block;
+  }
+}
+
+.attribution {
+  background: $moderate-cyan;
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
