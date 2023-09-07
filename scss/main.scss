@@ -17,6 +17,10 @@ body {
   min-height: 100vh;
   font-size: rem(18);
   text-align: center;
+
+  @include breakpoint-up(xlarge) {
+    font-size: rem(19);
+  }
 }
 
 *,
@@ -51,7 +55,7 @@ img {
 }
 
 .img-mobile {
-  @include breakpoint(medium) {
+  @include breakpoint-up(medium) {
     display: none;
   }
 }
@@ -59,7 +63,7 @@ img {
 .img-desktop {
   display: none;
 
-  @include breakpoint(medium) {
+  @include breakpoint-up(medium) {
     display: block;
   }
 }

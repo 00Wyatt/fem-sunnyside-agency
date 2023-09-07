@@ -8,7 +8,12 @@ $yellow: hsl(51, 100%, 49%);
 $dark-desaturated-cyan: hsl(167, 40%, 24%);
 $dark-blue: hsl(198, 62%, 26%);
 $dark-moderate-cyan: hsl(168, 34%, 41%);
+
+$dark-cyan: hsl(168, 45%, 32%);
 $moderate-cyan: hsl(167, 44%, 70%);
+$light-blue: hsl(200, 100%, 62%);
+$blue-hover: hsl(200, 100%, 74%);
+$yellow-hover: hsl(51, 100%, 74%);
 
 // Neutral
 $very-dark-desaturated-blue: hsl(212, 27%, 19%);
@@ -19,7 +24,7 @@ $white: hsl(0, 0%, 100%);
 
 // Breakpoints:
 
-$breakpoint: (
+$breakpoints-up: (
   "small": "500px",
   "medium": "700px",
   "large": "900px",
@@ -27,8 +32,22 @@ $breakpoint: (
   "xxlarge": "1500px"
 );
 
-@mixin breakpoint($size) {
-  @media (min-width: map-get($breakpoint, $size)) {
+$breakpoints-down: (
+  "small": "499px",
+  "medium": "699px",
+  "large": "899px",
+  "xlarge": "1199px",
+  "xxlarge": "1499px"
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down, $size)) {
     @content;
   }
 }
@@ -38,4 +57,22 @@ $breakpoint: (
 // Convert px to rem
 @function rem($pixels, $context: 16) {
   @return (math.div($pixels, $context)) * 1rem;
+}
+
+// Placeholders:
+
+%container {
+  margin: 0 16px;
+
+  @include breakpoint-up(small) {
+    margin: 0 24px;
+  }
+
+  @include breakpoint-up(large) {
+    margin: 0 40px;
+  }
+
+  @include breakpoint-up(xxlarge) {
+    margin: 0 56px;
+  }
 }

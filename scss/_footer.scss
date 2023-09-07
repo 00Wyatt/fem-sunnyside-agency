@@ -1,5 +1,4 @@
 @use "abstracts.scss" as *;
-@use "utils.scss" as *;
 
 .footer {
   padding: 72px 0;
@@ -25,6 +24,10 @@
     display: flex;
     gap: 48px;
 
+    @include breakpoint-up(large) {
+      gap: 64px;
+    }
+
     a {
       color: $dark-moderate-cyan;
       transition: color 150ms ease-in-out;
@@ -39,5 +42,15 @@
     margin-top: 48px;
     display: flex;
     gap: 32px;
+
+    .icon {
+      fill: $dark-cyan;
+      transition: fill 150ms ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        fill: $white;
+      }
+    }
   }
 }

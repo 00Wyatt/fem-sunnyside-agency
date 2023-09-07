@@ -1,5 +1,4 @@
 @use "abstracts.scss" as *;
-@use "utils.scss" as *;
 
 .content {
   img {
@@ -19,46 +18,80 @@
 
   .transform,
   .stand-out {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    justify-items: center;
 
-    @include breakpoint(large) {
-      flex-direction: row;
+    @include breakpoint-up(large) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    img {
+      object-fit: cover;
+      height: 100%;
     }
 
     .text-block {
+      max-width: 486px;
+      min-height: 400px;
+      justify-content: center;
+
+      @include breakpoint-up(large) {
+        align-items: start;
+        text-align: start;
+      }
+
       h2 {
         color: $very-dark-desaturated-blue;
         font-size: rem(32);
+
+        @include breakpoint-up(xlarge) {
+          font-size: rem(44);
+        }
       }
 
       p {
         color: $dark-grayish-blue;
         line-height: 1.7;
+
+        @include breakpoint-up(xlarge) {
+          line-height: 1.8;
+        }
       }
 
       a {
-        padding: 0 6px;
+        padding: 0 6px 1px;
         color: $very-dark-desaturated-blue;
         font-family: "Fraunces", sans-serif;
         font-weight: 900;
         text-transform: uppercase;
         position: relative;
 
+        &:hover::before {
+          opacity: 1;
+        }
+
         &::before {
           content: "";
           width: 100%;
-          height: 3px;
+          height: 9px;
           position: absolute;
           left: 0;
           bottom: 0;
-          filter: blur(3px);
+          border-radius: 30px;
+          opacity: 0.3;
+          transition: opacity 150ms ease-in-out;
+          z-index: -1;
         }
       }
     }
   }
 
   .transform {
+    .text-block {
+      @include breakpoint-up(large) {
+        order: -1;
+      }
+    }
     a::before {
       background: $yellow;
     }
@@ -71,30 +104,45 @@
   }
 
   .wrapper {
-    @include breakpoint(large) {
-      display: flex;
+    display: grid;
+
+    @include breakpoint-up(large) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    img {
+      object-fit: cover;
+      min-height: 512px;
     }
   }
 
   .graphic-design,
   .photography {
     position: relative;
-
-    img {
-      // display: flex;
-    }
+    display: flex;
+    justify-content: center;
 
     .text-block {
+      max-width: 400px;
       position: absolute;
       bottom: 0;
 
       h2 {
         font-size: rem(30);
+
+        @include breakpoint-up(xlarge) {
+          font-size: rem(36);
+        }
       }
 
       p {
         font-size: rem(16);
         line-height: 1.6;
+
+        @include breakpoint-up(xlarge) {
+          font-size: rem(17);
+          line-height: 1.7;
+        }
       }
     }
   }

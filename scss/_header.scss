@@ -1,21 +1,21 @@
 @use "abstracts.scss" as *;
-@use "utils.scss" as *;
 
 .hero {
   min-height: 60vh;
-  background: url("../images/mobile/image-header.jpg") bottom / cover no-repeat $dark-blue;
+  background: url("../images/mobile/image-header.jpg") bottom / cover no-repeat $light-blue;
   color: $white;
 
-  @include breakpoint(medium) {
+  @include breakpoint-up(small) {
     background-image: url("../images/desktop/image-header.jpg");
   }
 
-  @include breakpoint(large) {
-    min-height: 75vh;
+  @include breakpoint-up(large) {
+    min-height: 65vh;
   }
 
-  @include breakpoint(xlarge) {
-    min-height: 85vh;
+  @include breakpoint-up(xlarge) {
+    min-height: 75vh;
+    background-size: contain;
   }
 
   nav {
@@ -23,13 +23,15 @@
     padding: 24px 0;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
 
-    @include breakpoint(large) {
+    @include breakpoint-up(large) {
       padding: 32px 0;
     }
 
     .logo {
-      @include breakpoint(large) {
+      @include breakpoint-up(large) {
         width: 144px;
       }
     }
@@ -41,12 +43,12 @@
       gap: 8px;
       cursor: pointer;
 
-      @include breakpoint(medium) {
+      @include breakpoint-up(medium) {
         display: none;
       }
 
       &.active .line:nth-child(1) {
-        transform: translateY(11px) rotate(45deg);
+        transform: translateY(11px) translateX(3px) rotate(45deg);
         width: 30px;
       }
 
@@ -55,54 +57,141 @@
       }
 
       &.active .line:nth-child(3) {
-        transform: translateY(-11px) rotate(-45deg);
+        transform: translateY(-11px) translateX(3px) rotate(-45deg);
         width: 30px;
       }
-    }
 
-    .line {
-      background: $white;
-      width: 26px;
-      height: 3px;
-      transition: all 300ms ease-in-out;
+      .line {
+        background: $white;
+        width: 26px;
+        height: 3px;
+        transition: all 300ms ease-in-out;
+      }
     }
 
     .menu {
-      display: none;
+      @include breakpoint-down(medium) {
+        width: 100%;
+        flex-basis: 100%;
+        position: absolute;
+        top: 100%;
+        margin-top: 8px;
+        pointer-events: none;
+        visibility: hidden;
+        opacity: 0;
+        transition:
+          visibility 250ms ease-in-out,
+          opacity 250ms ease-in-out;
 
-      @include breakpoint(medium) {
-        display: flex;
-        gap: 48px;
+        &.active {
+          pointer-events: all;
+          visibility: visible;
+          opacity: 1;
+        }
       }
-    }
 
-    a {
-      color: $white;
-    }
+      ul {
+        display: flex;
 
-    .button {
-      padding: 16px 32px;
-      background: $white;
-      color: $very-dark-desaturated-blue;
-      font-family: "Fraunces", sans-serif;
-      font-size: 17px;
-      font-weight: 900;
-      text-transform: uppercase;
-      border-radius: 30px;
+        @include breakpoint-up(medium) {
+          gap: 24px;
+        }
+
+        @include breakpoint-up(xlarge) {
+          gap: 48px;
+        }
+
+        @include breakpoint-down(medium) {
+          padding: 40px;
+          background: $white;
+          flex-direction: column;
+          align-items: center;
+          gap: 32px;
+          position: relative;
+
+          &::after {
+            content: "";
+            background: $white;
+            position: absolute;
+            top: -24px;
+            right: 0;
+            width: 24px;
+            height: 24px;
+            clip-path: polygon(0% 100%, 100% 0%, 100% 100%, 0% 100%);
+          }
+        }
+      }
+
+      .link {
+        color: $dark-grayish-blue;
+        transition: opacity 150ms ease-in-out;
+
+        &:hover {
+          opacity: 0.8;
+        }
+        @include breakpoint-up(medium) {
+          color: $white;
+        }
+      }
+
+      .button {
+        padding: 16px 32px;
+        display: block;
+        background: $yellow;
+        color: $very-dark-desaturated-blue;
+        font-family: "Fraunces", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-radius: 30px;
+        transition:
+          color 150ms ease-in-out,
+          background-color 150ms ease-in-out;
+
+        @include breakpoint-up(medium) {
+          display: inline;
+          background: $white;
+        }
+
+        @include breakpoint-up(large) {
+          font-size: 17px;
+        }
+
+        &:hover {
+          background: $yellow-hover;
+
+          @include breakpoint-up(medium) {
+            color: $white;
+            background: $blue-hover;
+          }
+        }
+      }
     }
   }
 
-  &-text {
+  .heading {
     padding: 64px 0 128px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
-  }
+    gap: 24px;
 
-  h1 {
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: rem(40);
+    @include breakpoint-up(small) {
+      gap: 40px;
+    }
+
+    @include breakpoint-up(xlarge) {
+      gap: 80px;
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: rem(40);
+
+      @include breakpoint-up(xlarge) {
+        font-size: rem(48);
+      }
+    }
   }
 }
