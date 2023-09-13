@@ -27,8 +27,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Frontend Mentor | Responsive landing page using HTML, Sass, and JavaScript](https://www.frontendmentor.io/solutions/responsive-landing-page-using-html-sass-and-javascript-a-FmRKDvUs)
+- Live Site URL: [Frontend Mentor | Sunnyside agency landing page](https://00wyatt.github.io/fem-sunnyside-agency/)
 
 ## My process
 
